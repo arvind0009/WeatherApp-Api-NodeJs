@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your <%=data.city%> has <%=data.des%></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+        <script src="https://kit.fontawesome.com/97c02f89cd.js"></script>
+
+    <style>
+       
+        #city {
+            display: none;
+        }
+        .input{
+            border:1px solid rgb(132, 104, 253);
+        }
+        .box{
+            border:1px solid rgb(132, 104, 253);
+        }
+      
+    </style>
+</head>
+
+<body>
+    
+    <section class="hero is-info">
+        
+        <div class="hero-body" style="background-color: #9370DB;">
+            
+            <div class="container" style="text-align: center;">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <h1 class="title">
+                            Want to know about city weather ? Just Search here!
+                        </h1>
+                        <p><%=data.country%></p>
+                        <p><%=data.city%></p>
+                        <p><%=data.date%></p>
+                        <br>
+
+                        <%if(data.cel){%>
+                            <form action="/weather2" method="POST">
+                                <div class="field has-addons" >
+                                    <div class="control is-expanded">
+                                        <input class="input" name="city" id="city" type="text" value="<%=data.city%>">
+                                        <button type="submit" class="btn btn-success"><strong>Fahrenheit</strong></button>
+                                    </div>
+                            
+                                </div>
+                            </form>
+                            <%}%>
+                                
+                            <%if(!data.cel){%>
+                                  
+                                <form action="/cel" method="POST">
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <input class="input" name="city" id="city" type="text" value="<%=data.city%>">
+                                            <button type="submit" class="btn btn-primary"><strong>Celsius</strong></button>
+                                        </div>
+                                
+                                    </div>
+                                </form>
+                                <% }%>
+                              
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section"></section>
+        <div class="container3" style="text-align: center;">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form action="/weather" method="POST" >
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" name="city2" id="city2" type="text" placeholder="Search Here">
+                                <br>
+                                <% if(data == "city not found"){ %>
+                                  
+                                    <i class="text-danger">City Not Found</i>
+                              <%  } %> 
+                            </div>
+                            <div class="control">
+                               
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <section class="section" >
+        <div class="container" style="text-align: center;">
+                <div class="column is-offset-4 is-4">
+                  <div class="box">
+                        <article class="media">
+                            <figure class="image is-50x50">
+                                <img src="http://openweathermap.org/img/w/<%=data.icon %>.png" alt="Image">
+                            </figure>
+                        <div class="media-left"></div>
+                        <%if(!data.cel){%>
+                        <div class="content">
+                            <p>
+                                <span class="title"><%= data.city %></span>
+                                <br>
+                                <br>
+                                <span class="subtitle">Temperature: <%= data.temp%>° F</span>
+                                <br>
+                                 <span class="subtitle">Temp Max: <%= data.temp_max%>° F</span>
+                                <br>
+                                <span class="subtitle">Humidity: <%= data.humi%>%</span>
+                                <br>
+                        
+                                <span class="subtitle">Wind Speed: <%= data.wind%> mph</span>
+                                <br>
+                                <span class="subtitle">Pressure: <%= data.pressure%></span>
+                                <br>
+                             
+                                <i>Sky: <%= data.des %></i> 
+                        
+                            </p>
+                        </div>
+                        <%}%>
+                        <%if(data.cel){%>
+                        <div class="content">
+                            <p>
+                                <span class="title"><%= data.city %></span>
+                                <br>
+                                <br>
+                                <span class="subtitle">Temperature: <%= data.temp%> °C</span>
+                                <br>
+                                <span class="subtitle">Temp Max: <%= data.temp_max%> °C</span>
+                                <br>
+                                <span class="subtitle">Humidity: <%= data.humi%>%</span>
+                                <br>
+                        
+                                <span class="subtitle">Wind Speed: <%= data.wind%> kph</span>
+                                <br>
+                                <span class="subtitle">Pressure: <%= data.pressure%></span>
+                                <br>
+                                <i>Sky: <%= data.des %></i>
+                            </p>
+                        </div>
+                       <% }%>
+                    </article>
+                    </div>
+                   
+                </div>
+        </div>
+    </section>
+<footer class="footer" style="background-color: #d6d4e0;">
+   <div class="container" style="text-align: center;">
+            <div class="col text-center">
+               
+                <div class="py-3">
+                    <a href="https://github.com/arvind0009"><i class="fab fa-github-alt fa-2x  "></i></a>
+                    <a href="https://www.linkedin.com/in/arvind-kumar-505962189/"><i class="fab fa-brands fa-linkedin fa-2x "></i></a>
+                
+                </div>
+                <p>&copy;
+                    <script>document.write(new Date().getFullYear())</script> A_K
+                </p>
+            </div>
+    </div>
+  
+</footer>
+</body>
+
+</html>
