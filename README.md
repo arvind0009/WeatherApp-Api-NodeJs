@@ -3,4 +3,4 @@
 
 . Dependencies: Express, Request, Nodemon, Dotenv, Ejs 
 
-.Deployed non Heroku - https://infinite-lowlands-72227.herokuapp.com/
+.Deployed on Heroku - https://infinite-lowlands-72227.herokuapp.com/
